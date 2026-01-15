@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Eliteview Electronics Solutions INC</title>
+    <link rel="icon" href="images/EES-favicon.png" type="img/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body class="admin-page">
+    <!-- Hidden Admin Login -->
+    <div id="adminLogin" class="admin-login hidden">
+        <div class="login-form">
+            <h2>Admin Login</h2>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
+            <button id="loginBtn">Login</button>
+            <p id="loginMessage"></p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-placeholder">
+                        <img src="images/EES-logo.png" alt="logo" id="img-logo">
+                    </div>
+                    <h1>Eliteview Electronics Solutions INC</h1>
+                </a>
+            </div>
+            <div class="dashboard-actions">
+                <div class="preview-toggle">
+                    <span>Preview Site</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="previewToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Dashboard Content -->
+    <main class="admin-dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Admin Dashboard</h1>
+                <p>Welcome back, Admin!</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-box-open"></i> Manage Products</h3>
+                    <p>Add, edit, or remove products from your catalog. Update pricing, descriptions and images.</p>
+                    <a href="manage-products.html" class="btn">Manage Products</a>
+                    <div class="traffic-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">1,248</div>
+                            <div class="stat-label">Views</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">89</div>
+                            <div class="stat-label">Clicks</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-newspaper"></i> Manage News</h3>
+                    <p>Create and publish news articles, success stories, notices, and event announcements.</p>
+                    <a href="manage-news.html" class="btn">Manage News</a>
+                    <div class="traffic-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">842</div>
+                            <div class="stat-label">Views</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">63</div>
+                            <div class="stat-label">Clicks</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-users"></i> Manage Team</h3>
+                    <p>Update team member profiles, roles, and contact information.</p>
+                    <a href="manage-team.html" class="btn">Manage Team</a>
+                    <div class="traffic-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">521</div>
+                            <div class="stat-label">Views</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">42</div>
+                            <div class="stat-label">Clicks</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-images"></i> Manage Media</h3>
+                    <p>Upload and organize images, videos, and other media assets for your website.</p>
+                    <a href="manage-media.html" class="btn">Manage Media</a>
+                    <div class="traffic-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">2,105</div>
+                            <div class="stat-label">Views</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">156</div>
+                            <div class="stat-label">Clicks</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-images"></i> Manage Hero Carousel</h3>
+                    <p>Upload, edit, or remove images and captions for the homepage hero carousel.</p>
+                    <a href="manage-hero.html" class="btn">Manage Hero</a>
+                    <div class="traffic-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Slides</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-frame-container" id="previewContainer">
+                <iframe class="preview-frame" src="index.html" title="Site Preview"></iframe>
+            </div>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="logo-container">
+                        <div class="logo-placeholder">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h2>Eliteview Electronics Solutions INC</h2>
+                    </div>
+                    <p>Securing your world with innovative technology. We provide cutting-edge security solutions for homes and businesses.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="news.html">News & Events</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html#contact">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Inquire Now</h3>
+                    <form id="inquiryForm">
+                        <div class="form-group">
+                            <input type="email" id="senderEmail" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="inquirySubject" value="Inquiry" readonly>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="inquiryContent" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Eliteview Electronics Solutions INC. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Toggle preview site
+        document.getElementById('previewToggle').addEventListener('change', function() {
+            const previewContainer = document.getElementById('previewContainer');
+            if (this.checked) {
+                previewContainer.classList.add('active');
+            } else {
+                previewContainer.classList.remove('active');
+            }
+        });
+        
+        // Logout function
+        function logout() {
+            if(confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

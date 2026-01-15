@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Eliteview Electronics Solutions INC</title>
+    <link rel="icon" href="images/EES-favicon.png" type="img/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .products-page {
+            padding: 60px 0;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .page-header h1 {
+            font-size: 2rem;
+            color: var(--dark-blue);
+        }
+        
+        .category-filter {
+            position: relative;
+        }
+        
+        #categorySelect {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            font-size: 16px;
+            appearance: none;
+            padding-right: 30px;
+            cursor: pointer;
+        }
+        
+        .category-filter::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--dark-gray);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .no-products {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .category-filter {
+                width: 100%;
+            }
+            
+            #categorySelect {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hidden Admin Login -->
+    <div id="adminLogin" class="admin-login hidden">
+        <div class="login-form">
+            <h2>Admin Login</h2>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
+            <button id="loginBtn">Login</button>
+            <p id="loginMessage"></p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-placeholder">
+                        <img src="images/EES-logo.png" alt="logo" id="img-logo">
+                    </div>
+                    <h1>Eliteview Electronics Solutions INC</h1>
+                </a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li class="dropdown">
+                        <a href="products.html">Products <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="products.html?category=camera">CAMERA</a></li>
+                            <li><a href="products.html?category=fdas">FDAS</a></li>
+                            <li><a href="products.html?category=dvr">DVR</a></li>
+                            <li><a href="products.html?category=nvr">NVR</a></li>
+                            <li><a href="products.html?category=kit">KIT</a></li>
+                            <li><a href="products.html?category=video-intercom">VIDEO INTERCOM</a></li>
+                            <li><a href="products.html?category=monitor">MONITOR</a></li>
+                            <li><a href="products.html?category=cable">CABLE</a></li>
+                            <li><a href="products.html?category=poe">POE</a></li>
+                            <li><a href="products.html?category=anpr">ANPR</a></li>
+                            <li><a href="products.html?category=memory-card">MEMORY CARD</a></li>
+                            <li><a href="products.html?category=hdd">HDD</a></li>
+                            <li><a href="products.html?category=intercom">INTERCOM</a></li>
+                            <li><a href="products.html?category=power-supply">POWER SUPPLY</a></li>
+                            <li><a href="products.html?category=interactive-panel">INTERACTIVE PANEL</a></li>
+                            <li><a href="products.html?category=router">ROUTER</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="news.html">News & Events <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="news.html?type=success-stories">Success Stories</a></li>
+                            <li><a href="news.html?type=notices">Notices</a></li>
+                            <li><a href="news.html?type=events">Events</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="about.html">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html#overview">Overview</a></li>
+                            <li><a href="about.html#mission">Mission</a></li>
+                            <li><a href="about.html#vision">Vision</a></li>
+                            <li><a href="about.html#team">Our Team</a></li>
+                            <li><a href="about.html#contact">Contact Us</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Products Page Content -->
+    <main class="products-page">
+        <div class="container">
+            <div class="page-header">
+                <h1 id="categoryTitle">All Products</h1>
+                <div class="category-filter">
+                    <select id="categorySelect">
+                        <option value="">All Categories</option>
+                        <option value="camera">CAMERA</option>
+                        <option value="fdas">FDAS</option>
+                        <option value="dvr">DVR</option>
+                        <option value="nvr">NVR</option>
+                        <option value="kit">KIT</option>
+                        <option value="video-intercom">VIDEO INTERCOM</option>
+                        <option value="monitor">MONITOR</option>
+                        <option value="cable">CABLE</option>
+                        <option value="poe">POE</option>
+                        <option value="anpr">ANPR</option>
+                        <option value="memory-card">MEMORY CARD</option>
+                        <option value="hdd">HDD</option>
+                        <option value="intercom">INTERCOM</option>
+                        <option value="power-supply">POWER SUPPLY</option>
+                        <option value="interactive-panel">INTERACTIVE PANEL</option>
+                        <option value="router">ROUTER</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Product cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Content Popup Modal -->
+    <div id="contentModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="logo-container">
+                        <div class="logo-placeholder">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h2>Eliteview Electronics Solutions INC</h2>
+                    </div>
+                    <p>Securing your world with innovative technology. We provide cutting-edge security solutions for homes and businesses.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="news.html">News & Events</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html#contact">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Inquire Now</h3>
+                    <form id="inquiryForm">
+                        <div class="form-group">
+                            <input type="email" id="senderEmail" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="inquirySubject" value="Inquiry" readonly>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="inquiryContent" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Eliteview Electronics Solutions INC. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const data = getSiteData(); // ← Use centralized data
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedCategory = urlParams.get('category') || '';
+        const grid = document.getElementById('productsGrid');
+        const title = document.getElementById('categoryTitle');
+        const select = document.getElementById('categorySelect');
+
+        if (selectedCategory) {
+            const name = selectedCategory.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            title.textContent = `${name} Products`;
+            select.value = selectedCategory;
+        }
+
+        function render() {
+            const filtered = selectedCategory
+            ? data.products.filter(p => p.category === selectedCategory)
+            : data.products;
+            grid.innerHTML = filtered.length
+            ? filtered.map(p => `
+                <div class="product-card" data-product-id="${p.id}">
+                    <img src="${p.image || 'https://via.placeholder.com/600x400'}" alt="${p.name}">
+                    <h3>${p.name}</h3>
+                    <p>${p.description}</p>
+                    <div class="price">$${p.price.toFixed(2)}</div>
+                    <button class="read-more-btn">Read More</button>
+                </div>
+                `).join('')
+            : '<p class="no-products">No products available.</p>';
+        }
+
+        render();
+
+        select?.addEventListener('change', (e) => {
+            const cat = e.target.value;
+            const url = new URL(window.location);
+            if (cat) url.searchParams.set('category', cat);
+            else url.searchParams.delete('category');
+            window.history.pushState({}, '', url);
+            title.textContent = cat
+            ? `${cat.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} Products`
+            : 'All Products';
+            render();
+        });
+        });
+    </script>
+</body>
+</html>

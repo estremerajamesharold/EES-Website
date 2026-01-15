@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Events - Eliteview Electronics Solutions INC</title>
+    <link rel="icon" href="images/EES-favicon.png" type="img/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .news-page {
+            padding: 60px 0;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .page-header h1 {
+            font-size: 2rem;
+            color: var(--dark-blue);
+        }
+        
+        .news-filter {
+            position: relative;
+        }
+        
+        #newsTypeSelect {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            font-size: 16px;
+            appearance: none;
+            padding-right: 30px;
+            cursor: pointer;
+        }
+        
+        .news-filter::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--dark-gray);
+        }
+        
+        .news-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .no-news {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .news-filter {
+                width: 100%;
+            }
+            
+            #newsTypeSelect {
+                width: 100%;
+            }
+            
+            .news-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hidden Admin Login -->
+    <div id="adminLogin" class="admin-login hidden">
+        <div class="login-form">
+            <h2>Admin Login</h2>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
+            <button id="loginBtn">Login</button>
+            <p id="loginMessage"></p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-placeholder">
+                        <img src="images/EES-logo.png" alt="logo" id="img-logo">
+                    </div>
+                    <h1>Eliteview Electronics Solutions INC</h1>
+                </a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li class="dropdown">
+                        <a href="products.html">Products <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="products.html?category=camera">CAMERA</a></li>
+                            <li><a href="products.html?category=fdas">FDAS</a></li>
+                            <li><a href="products.html?category=dvr">DVR</a></li>
+                            <li><a href="products.html?category=nvr">NVR</a></li>
+                            <li><a href="products.html?category=kit">KIT</a></li>
+                            <li><a href="products.html?category=video-intercom">VIDEO INTERCOM</a></li>
+                            <li><a href="products.html?category=monitor">MONITOR</a></li>
+                            <li><a href="products.html?category=cable">CABLE</a></li>
+                            <li><a href="products.html?category=poe">POE</a></li>
+                            <li><a href="products.html?category=anpr">ANPR</a></li>
+                            <li><a href="products.html?category=memory-card">MEMORY CARD</a></li>
+                            <li><a href="products.html?category=hdd">HDD</a></li>
+                            <li><a href="products.html?category=intercom">INTERCOM</a></li>
+                            <li><a href="products.html?category=power-supply">POWER SUPPLY</a></li>
+                            <li><a href="products.html?category=interactive-panel">INTERACTIVE PANEL</a></li>
+                            <li><a href="products.html?category=router">ROUTER</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="news.html">News & Events <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="news.html?type=success-stories">Success Stories</a></li>
+                            <li><a href="news.html?type=notices">Notices</a></li>
+                            <li><a href="news.html?type=events">Events</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="about.html">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html#overview">Overview</a></li>
+                            <li><a href="about.html#mission">Mission</a></li>
+                            <li><a href="about.html#vision">Vision</a></li>
+                            <li><a href="about.html#team">Our Team</a></li>
+                            <li><a href="about.html#contact">Contact Us</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- News Page Content -->
+    <main class="news-page">
+        <div class="container">
+            <div class="page-header">
+                <h1 id="newsTypeTitle">All News & Events</h1>
+                <div class="news-filter">
+                    <select id="newsTypeSelect">
+                        <option value="">All Types</option>
+                        <option value="success-stories">Success Stories</option>
+                        <option value="notices">Notices</option>
+                        <option value="events">Events</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="news-list" id="newsList">
+                <!-- News items will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Content Popup Modal -->
+    <div id="contentModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="logo-container">
+                        <div class="logo-placeholder">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h2>Eliteview Electronics Solutions INC</h2>
+                    </div>
+                    <p>Securing your world with innovative technology. We provide cutting-edge security solutions for homes and businesses.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="news.html">News & Events</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html#contact">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Inquire Now</h3>
+                    <form id="inquiryForm">
+                        <div class="form-group">
+                            <input type="email" id="senderEmail" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="inquirySubject" value="Inquiry" readonly>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="inquiryContent" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Eliteview Electronics Solutions INC. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const data = getSiteData(); // ← Use centralized data
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedType = urlParams.get('type') || '';
+        const list = document.getElementById('newsList');
+        const title = document.getElementById('newsTypeTitle');
+        const select = document.getElementById('newsTypeSelect');
+
+        if (selectedType) {
+            const name = selectedType.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            title.textContent = name;
+            select.value = selectedType;
+        }
+
+        function render() {
+            const filtered = selectedType
+            ? data.news.filter(n => n.type === selectedType)
+            : data.news;
+            list.innerHTML = filtered.length
+            ? filtered.map(n => `
+                <div class="news-card" data-news-id="${n.id}">
+                    <div class="news-header">
+                        <span class="news-tag ${n.type}">${n.type.replace(/-/g, ' ').toUpperCase()}</span>
+                        <div class="news-date">${new Date(n.date).toLocaleDateString()}</div>
+                    </div>
+                    <h3>${n.title}</h3>
+                    <p class="news-excerpt">${n.excerpt}</p>
+                    <button class="read-more-btn">Read More</button>
+                </div>
+                `).join('')
+            : '<p class="no-news">No news available.</p>';
+        }
+
+        render();
+
+        select?.addEventListener('change', (e) => {
+            const t = e.target.value;
+            const url = new URL(window.location);
+            if (t) url.searchParams.set('type', t);
+            else url.searchParams.delete('type');
+            window.history.pushState({}, '', url);
+            title.textContent = t
+            ? t.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+            : 'All News & Events';
+            render();
+        });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Media - Eliteview Electronics Solutions INC</title>
+    <link rel="icon" href="images/EES-favicon.png" type="img/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-page">
+    <!-- Hidden Admin Login -->
+    <div id="adminLogin" class="admin-login hidden">
+        <div class="login-form">
+            <h2>Admin Login</h2>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
+            <button id="loginBtn">Login</button>
+            <p id="loginMessage"></p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-placeholder">
+                        <img src="images/EES-logo.png" alt="logo" id="img-logo">
+                    </div>
+                    <h1>Eliteview Electronics Solutions INC</h1>
+                </a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="admin-dashboard.html">Dashboard</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Manage Media Page Content -->
+    <main class="manage-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Manage Media</h1>
+                <button class="btn-add" id="addMediaBtn">Add New Media</button>
+            </div>
+            
+            <div class="search-filter">
+                <input type="text" id="searchInput" placeholder="Search media...">
+                <select id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="image">Images</option>
+                    <option value="video">Videos</option>
+                </select>
+            </div>
+            
+            <div class="media-grid" id="mediaGrid">
+                <!-- Media items will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Media Modal -->
+    <div id="mediaModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add New Media</h2>
+            <form id="mediaForm">
+                <div class="form-group">
+                    <label for="mediaName">Media Name *</label>
+                    <input type="text" id="mediaName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mediaType">Type *</label>
+                    <select id="mediaType" required>
+                        <option value="">Select Type</option>
+                        <option value="image">Image</option>
+                        <option value="video">Video</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mediaUrl">Media URL *</label>
+                    <input type="url" id="mediaUrl" required>
+                </div>
+                
+                <div class="preview-container" id="previewContainer">
+                    <p>Preview will appear here</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mediaAlt">Alt Text / Description</label>
+                    <textarea id="mediaAlt" rows="2"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Save Media</button>
+                    <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="logo-container">
+                        <div class="logo-placeholder">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h2>Eliteview Electronics Solutions INC</h2>
+                    </div>
+                    <p>Securing your world with innovative technology. We provide cutting-edge security solutions for homes and businesses.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="news.html">News & Events</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html#contact">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Inquire Now</h3>
+                    <form id="inquiryForm">
+                        <div class="form-group">
+                            <input type="email" id="senderEmail" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="inquirySubject" value="Inquiry" readonly>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="inquiryContent" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Eliteview Electronics Solutions INC. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="admin-script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
